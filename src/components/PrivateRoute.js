@@ -20,6 +20,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   const [state, setState] = useReducer((s, a) => ({...s, ...a}), {
     username:'',
     password: '',
+    signedIn: false,
   });
 
   const onChange = e => {
@@ -31,6 +32,7 @@ const PrivateRoute = ({ component: Component, ...rest }) => {
   useEffect(() => {
     if (signInData.data) {
       setToken(signInData.data.signIn);
+      setState({signedIn: true});
     }
     // eslint-disable-next-line
   }, [signInData.data]);
